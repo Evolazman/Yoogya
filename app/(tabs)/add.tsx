@@ -1,19 +1,14 @@
-import {  } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import React from 'react'
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
-
-export default function HomeScreen() {
+const add = () => {
   return (
     <View style={styles.TopContainer}>
-      <Text>My Profile</Text>
+        <Text>Add</Text>
     </View>
-  );
+  )
 }
 
+export default add
 const styles = StyleSheet.create({
   TopContainer: {
     width: '100%',

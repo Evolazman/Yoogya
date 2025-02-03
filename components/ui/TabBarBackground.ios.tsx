@@ -10,13 +10,29 @@ export default function BlurTabBarBackground() {
       // and matches the native tab bar appearance on iOS.
       tint="systemChromeMaterial"
       intensity={100}
-      style={StyleSheet.absoluteFill}
+      style={styles.blurView}
     />
   );
 }
+
 
 export function useBottomTabOverflow() {
   const tabHeight = useBottomTabBarHeight();
   const { bottom } = useSafeAreaInsets();
   return tabHeight - bottom;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    bottom: 10, // ยกขึ้นจากขอบล่าง
+    left: 20, // ขยับจากขอบซ้าย
+    right: 20, // ขยับจากขอบขวา
+    borderRadius: 20, // เพิ่มมุมโค้งมน
+    overflow: 'hidden', // ทำให้ borderRadius มีผลกับ BlurView
+  },
+  blurView: {
+    ...StyleSheet.absoluteFillObject, // ทำให้ BlurView ครอบเต็ม container
+    borderRadius: 20, // ทำให้มุมโค้งมน
+  },
+});
