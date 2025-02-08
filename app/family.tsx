@@ -1,14 +1,16 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
-const list = () => {
+import { useRouter } from 'expo-router';
+const family = () => {
+    const router = useRouter();
   return (
     <View style={styles.TopContainer}>
-        <Text>List</Text>
+        <Text>Add</Text>
     </View>
   )
 }
 
-export default list
+export default family
 const styles = StyleSheet.create({
     TopContainer: {
       width: '100%',
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
       borderBottomLeftRadius: 50,
       borderBottomRightRadius: 50,
       display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
     }
   });

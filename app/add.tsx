@@ -1,14 +1,16 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
-const book = () => {
+import { useRouter } from 'expo-router';
+const add = () => {
+  const router = useRouter();
   return (
     <View style={styles.TopContainer}>
-        <Text>Book</Text>
+        <Text>Add</Text>
     </View>
   )
 }
 
-export default book
+export default add
 const styles = StyleSheet.create({
   TopContainer: {
     width: '100%',
