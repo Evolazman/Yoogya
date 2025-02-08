@@ -9,6 +9,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import BlurTabBarBackground from '@/components/ui/TabBarBackground.ios';
 import List from 'assets/clipboard-list.svg';
+
 import { SvgXml } from 'react-native-svg';
 import { Button } from "react-native";
 export default function TabLayout() {
@@ -63,7 +64,7 @@ export default function TabLayout() {
         options={{
           title: 'เพิ่มข้อมูลยา',
           tabBarIcon: ({ color }) => <IconSymbol size={50} name="paperplane.fill" color={color} />,
-          tabBarLabelStyle: { fontSize: 13, fontWeight: "bold",marginTop:10 }, // ปรับขนาดตัวหนังสือ
+          tabBarLabelStyle: { fontSize: 13, fontWeight: "bold" ,marginTop:10 }, // ปรับขนาดตัวหนังสือ
           
         }}
       />

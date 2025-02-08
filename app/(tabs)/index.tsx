@@ -6,7 +6,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Header_page } from '@/components/Header_page';
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
-
+import Pen from 'assets/pen.svg';
 const imagePath = require('../../assets/images/react-logo.png');
 
 export default function HomeScreen() {
@@ -15,11 +15,16 @@ export default function HomeScreen() {
       <Header_page name='My Profile'></Header_page>
       <View style={styles.blankContainer}></View>
       <View style={styles.imageContainer}>
-        <Image style={styles.iamge} source={{uri : "https://www.matichon.co.th/wp-content/uploads/2024/08/dfdfdf9-wed.jpg"}}></Image>
+        <Image style={styles.image} source={{uri : "https://www.matichon.co.th/wp-content/uploads/2024/08/dfdfdf9-wed.jpg"}}></Image>
         <View className='Edit' style={styles.edit} >
-          <Text>Icon</Text>
+          <Pen width={20} height={20} color="#FFFFFF"></Pen>
         </View>
       </View>
+      <View style={styles.userDataContainer}>
+        <Text id='UserName' style={{textAlign:'center' , fontSize: 24 , fontWeight : 700 , marginBottom : 10 , color: '#FFF'}}>Gong Yoo</Text>
+        <Text id='UserId' style={{textAlign:'center' , fontSize: 16 , fontWeight : 700 ,color: '#FFF'}}>UID: 000000000</Text>
+      </View>
+      
     </View>
   );
 }
@@ -37,19 +42,18 @@ const styles = StyleSheet.create({
   },
   blankContainer : {
     width: "100%",
-    height : 137
+    height : 130
   },
   imageContainer : {
     width: 106 ,
     height: 106 ,
     borderRadius : 100 , 
-    backgroundColor : "#FFFFFF",
     display : "flex",
     justifyContent: "center",
     alignItems: "center",
     position: "relative"
   },
-  iamge : {
+  image : {
     width: "100%",
     height: "100%",
     borderRadius : 100
@@ -62,7 +66,15 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderRadius : 100 , 
-  }
+    display : "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  userDataContainer : {
+    position: "absolute",
+    bottom: 20,
+    
+  },
   
 
 });
