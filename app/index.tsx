@@ -50,7 +50,7 @@ export default function HomeScreen() {
       </View>
       <View style={styles.bottomContainer}>
 
-        <TouchableOpacity onPress={() => router.push('/list')} >
+        <TouchableOpacity onPress={() => router.push('/family')} >
           <View id='profile' style={styles.boxContent}>
             <View id='left' style={styles.left}>
               <View style={styles.icon_box}>

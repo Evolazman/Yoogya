@@ -5,7 +5,7 @@ const family = () => {
     const router = useRouter();
   return (
     <View style={styles.TopContainer}>
-        <Text>Add</Text>
+        <Text>ครอบครัวของฉัน</Text>
     </View>
   )
 }
@@ -14,7 +14,7 @@ export default family
 const styles = StyleSheet.create({
     TopContainer: {
       width: '100%',
-      height: 328,
+      height: "20%",
       backgroundColor: '#55C3CC',
       borderBottomLeftRadius: 50,
       borderBottomRightRadius: 50,

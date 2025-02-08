@@ -32,7 +32,7 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ title: "myProfile" }} />
-        <Stack.Screen name="list" options={{ title: "list" }} />
+        <Stack.Screen name="family" options={{ title: "family" }} />
         <Stack.Screen name="book" options={{ title: "book" }} />
         <Stack.Screen name="+not-found" />
       </Stack>
