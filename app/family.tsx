@@ -1,14 +1,42 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, Platform , TextInput, Button , Alert , TouchableOpacity , FlatList} from "react-native";
+import { View, Text, Image, StyleSheet, Platform , TextInput, Button , Alert , TouchableOpacity , FlatList , KeyboardAvoidingView} from "react-native";
 import { useRouter } from 'expo-router';
 import { Header_page } from '@/components/Header_page';
 import { ThemedText } from '@/components/ThemedText';
 import { Ionicons } from '@expo/vector-icons';
+import Modal from 'react-native-modal';
+import RNPickerSelect from 'react-native-picker-select';
 const family = () => {
     const router = useRouter();
     const [members, setMembers] = useState([
       { id: 1, name: "Mahamud", age: 39, role: "มารดา" }
     ]);
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [editingMember, setEditingMember] = useState(null);
+    const [editedName, setEditedName] = useState("");
+    const [editedRole, setEditedRole] = useState("");
+    // เปิด Modal แก้ไขข้อมูล
+    const openEditModal = (member : any) => {
+      setEditingMember(member);
+      setEditedName(member.name);
+      setEditedRole(member.role);
+      setModalVisible(true);
+    };
+
+    // บันทึกการแก้ไข
+  const saveEdit = () => {
+    if (!editedName.trim()) {
+      Alert.alert("ข้อผิดพลาด", "กรุณากรอกชื่อ");
+      return;
+    }
+
+    setMembers(members.map(member =>
+      member.id === editingMember.id
+        ? { ...member, name: editedName, role: editedRole }
+        : member
+    ));
+    setModalVisible(false);
+  };
     const addMember = () => {
       Alert.alert(
         "เพิ่มสมาชิก",
@@ -78,7 +106,7 @@ const family = () => {
                   <Text style={styles.roleText}>{item.role}</Text>
                 </TouchableOpacity>
                 <View style={styles.actionButtons}>
-                  <TouchableOpacity style={styles.editButton}>
+                  <TouchableOpacity style={styles.editButton} onPress={() => openEditModal(item)}>
                     <Text style={styles.editText}>EDIT</Text>
                   </TouchableOpacity>
                   <TouchableOpacity  onPress={() => deleteMember(item.id)}>
@@ -90,6 +118,46 @@ const family = () => {
           )}
         />
       </View>
+
+       {/* Modal แก้ไขข้อมูล */}
+       <Modal 
+        isVisible={isModalVisible} 
+        onBackdropPress={() => setModalVisible(false)} 
+        style={styles.modal}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          
+        >
+
+        <View style={styles.modalContent}>
+          <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
+            <Ionicons name="close" size={24} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.modalTitle}>แก้ไข</Text>
+
+          <Text style={styles.label}>ความสัมพันธ์ :</Text>
+          <TextInput
+            style={styles.modalInput}
+            value={editedRole}
+            onChangeText={setEditedRole}
+          />
+
+          <Text style={styles.label}>ชื่อ :</Text>
+          <TextInput
+            style={styles.modalInput}
+            value={editedName}
+            onChangeText={setEditedName}
+          />
+
+          <TouchableOpacity style={styles.confirmButton} onPress={saveEdit}>
+            <Text style={styles.confirmText}>ยืนยัน</Text>
+          </TouchableOpacity>
+        </View>
+        </KeyboardAvoidingView>
+      </Modal>
       
     </View>
   )
@@ -143,7 +211,7 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       padding: 15,
       borderRadius: 12,
-      alignItems: "center",
+
       marginTop: 20,
       shadowColor: "#000",
       shadowOffset: { width: 0, height: 2 },
@@ -182,7 +250,9 @@ const styles = StyleSheet.create({
     actionButtons: {
       flexDirection: "row",
       alignItems: "center",
-      marginTop: 8,
+      marginTop: 20,
+
+
     },
     editButton: {
       backgroundColor: "gray",
@@ -196,4 +266,52 @@ const styles = StyleSheet.create({
       fontSize: 12,
       fontWeight: "bold",
     },
-  });
+    // Modal Styles
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  closeButton: {
+    alignSelf: "flex-end",
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  modalInput: {
+    backgroundColor: "#B2DFDB",
+    borderRadius: 100,
+    padding: 10,
+    fontSize: 16,
+    marginBottom: 15,
+    paddingLeft: 20,
+  },
+  confirmButton: {
+    backgroundColor: "#004D40",
+    padding: 12,
+    borderRadius: 100,
+    alignItems: "center",
+  },
+  confirmText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
+
+const pickerStyles = {
+  inputIOS: styles.input,
+  inputAndroid: styles.input,
+};
