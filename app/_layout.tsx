@@ -27,13 +27,32 @@ export default function RootLayout() {
     return null;
   }
 
+  const CustomLightTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: 'blue',
+      background: '#CBF2F5',
+    },
+  };
+  
+  // Custom Dark Theme
+  const CustomDarkTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      primary: 'orange',
+      background: '#121212',
+    },
+  };
+  
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? CustomDarkTheme : CustomLightTheme}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ title: "myProfile" }} />
         <Stack.Screen name="family" options={{ title: "family" }} />
-        <Stack.Screen name="book" options={{ title: "book" }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

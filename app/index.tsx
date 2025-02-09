@@ -50,7 +50,7 @@ export default function HomeScreen() {
       </View>
       <View style={styles.bottomContainer}>
 
-        <TouchableOpacity onPress={() => router.push('/family')} >
+        <TouchableOpacity onPress={() => router.push('/')} >
           <View id='profile' style={styles.boxContent}>
             <View id='left' style={styles.left}>
               <View style={styles.icon_box}>
@@ -66,7 +66,7 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => router.push('/')} >
+        <TouchableOpacity onPress={() => router.push('/family')} >
         <View id='profile' style={styles.boxContent}>
           <View id='left' style={styles.left}>
             <View style={styles.icon_box}>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   boxContent : {
     flexDirection: 'row',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   left : {
     width: '15%',
@@ -234,6 +234,10 @@ const styles = StyleSheet.create({
     height: 40 , width: 40 ,
     backgroundColor: '#8FDAE0' ,
     borderRadius: 100
+  },
+  customText : {
+    fontSize: 20,
+    fontWeight:600,
   }
   
 
